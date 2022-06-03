@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { getTimeAction } from "../../store/geoLocationSlice";
 export const GeoForm = (props:any) => {
     const [form, setForm] = useState({
         lattitude: props.lattitude,
@@ -7,19 +8,10 @@ export const GeoForm = (props:any) => {
         disableSubmit : true        
     });
     const [formFields, setFormFields] = useState({...props.formFields});
+    const dispatch = useAppDispatch();
     const handleFormChange = (event:any) => {
         const { name, value } = event.target;
-        var validEntry = true;
-
-        if(formFields.fields[name]['validInput']){
-          var updateFormFields = {
-            ...formFields
-          };
-          validEntry = updateFormFields.fields[name].validInput(value);
-          updateFormFields.fields[name]['errorMessage'] = validEntry? '':'Invalid ' + name + ' entry!';
-          setFormFields(updateFormFields);
-        }
-        
+        var validEntry = formFields.fields[name]['validInput']? validateInput(name, value):true;
         const updatedForm = {
         ...form,
         [name]: value
@@ -27,6 +19,16 @@ export const GeoForm = (props:any) => {
       updatedForm.disableSubmit = (updatedForm.lattitude == 0 || updatedForm.longitude == 0 || !validEntry);
       setForm(updatedForm);
   };
+//validate each input field if it has valid input lattitude and longitude
+  const validateInput = (name: string, value: number) => {
+    var updateFormFields = {...formFields };
+    var validEntry = updateFormFields.fields[name].validInput(value);
+
+    if(formFields.fields[name]['validInput']) updateFormFields.fields[name]['errorMessage'] = validEntry? '':'Invalid ' + name + ' entry!';
+  
+    setFormFields(updateFormFields);
+    return validEntry;
+  }
 //number input type allows 'e'  as input remove by formating input
   const formatInput = (e:any) => {
      // Prevent characters that are not numbers ("e")
@@ -42,8 +44,10 @@ export const GeoForm = (props:any) => {
    }
 
    const handleSubmit = (event : any) => {
-      event.preventDefault();
-      console.log(event)
+     event.preventDefault();
+      let {lattitude, longitude} = form;
+      dispatch(getTimeAction({lattitude, longitude}));
+      return false;
    }
    
     var inputFields:any[] = [];
@@ -62,9 +66,9 @@ export const GeoForm = (props:any) => {
     }
     
     return  (
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
             {inputFields}
-            <button onSubmit={(e) => handleSubmit(e)} disabled={form.disableSubmit}>'Get Time'</button>
+            <button type="submit" disabled={form.disableSubmit}>Get Time</button>
         </form>
     )
 }
