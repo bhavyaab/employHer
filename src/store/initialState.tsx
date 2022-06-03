@@ -3,7 +3,7 @@ export const initialState = {
     country: '',
     currentTime: {
         date: '',
-        time: ''
+        time: '00 : 00 : 00'
     },
     lattitude: 0,
     longitude: 0

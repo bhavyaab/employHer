@@ -6,8 +6,7 @@ import { RootState } from './store';
 
 export const getTimeAction = createAsyncThunk(
     'geoLocaterState/getTimeZone', async (payload: {lattitude: number, longitude: number}) => {
-        const response = await getTimeZone(payload.lattitude, payload.longitude);
-        return response;
+        return await getTimeZone(payload.lattitude, payload.longitude);
     })
 
 export const geoLocaterSlice = createSlice({
@@ -15,16 +14,15 @@ export const geoLocaterSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers : (builder) => {
-        builder
-        .addCase(getTimeAction.pending, (state) => {})
-        .addCase(getTimeAction.fulfilled, (state, action: PayloadAction<any>) => {
+        builder.addCase(getTimeAction.pending, (state) => {});
+        builder.addCase(getTimeAction.fulfilled, (state, action: PayloadAction<any>) => {
             state = {...state, ...action.payload};
             state.currentTime = convertDateAndTime(action.payload.timestamp);
             return state;
-        })
-        .addCase(getTimeAction.rejected, (state) => {  
-            console.log('rejected')          
-        })
+        });
+        builder.addCase(getTimeAction.rejected, (state) => {
+          console.log("rejected");
+        });
     }
 });
 

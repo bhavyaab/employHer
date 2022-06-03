@@ -1,4 +1,4 @@
-var key = process.env.REACT_APP_TIMEZONE_API_KEY || 'DEQFCA85DPXD';
+var key = process.env.REACT_APP_TIMEZONE_API_KEY;
 
 export async function getTimeZone(lattitude:number, longitude:number){
     const url = `http://api.timezonedb.com/v2.1/get-time-zone?key=${key}&format=json&by=position&lat=${lattitude}&lng=${longitude}`;
