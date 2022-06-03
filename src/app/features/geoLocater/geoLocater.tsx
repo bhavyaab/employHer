@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import {GeoForm} from './geoForm';
+import { geoFormFileds} from './geoFormFields';
 import getCoordinatesAction, {getState, updateLatLong} from '../../store/geoLocationSlice';
 
 
@@ -16,11 +17,11 @@ useEffect(() =>  {
 })
   return (
    <div>
-    <li>Lat: {state.lat}</li>
-    <li>Long: {state.long}</li>
+    <li>Lat: {state.lattitude}</li>
+    <li>Long: {state.longitude}</li>
     <li>Date: {state.currentTime.date}</li>
     <li>Time: {state.currentTime.time}</li>
-    <GeoForm></GeoForm>
+    <GeoForm lattitude={state.lattitude} longitude={state.longitude} formFields={geoFormFileds}></GeoForm>
    </div>
   )
 }

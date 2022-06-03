@@ -1,34 +1,34 @@
 export const geoFormFileds = {
-    fields : [
-        {
+    fields : {
+    latitude: {
         type:"number",
         name:"latitude",
         value: '',
-        placeholder:"Enter Latitude",
-        errorMEssage: '',
-        validInput: validLatitude
+        placeholder:"Enter latitude",
+        errorMessage: '',
+        validInput: validlatitude
     },
-    {
+    longitude: {
         type:"number",
         name:"longitude",
         value: '',
         placeholder:"Enter Longitude",
         errorMessage:'',
-        validInput:validLongitude
+        validInput: validLongitude
     }
-    ],
+},
     disableSubmit : true
 }
 
 
 //returns true if value entered value is a valid latitude
 //latitude value lies between -90 to +90;
-function validLatitude(value: number){    
-    if(value > 90 && value < -90) return false;
+export function validlatitude(value: number){    
+    return (value < 90 && value > -90)
 }
 
 //returns true if value entered value is a valid longitude
 //latitude value lies between -180 to +80;
-function validLongitude(value: number){    
-    if(value > 80 && value < -180) return false;
+export function validLongitude(value: number){    
+    return (value < 80 && value > -180);
 }

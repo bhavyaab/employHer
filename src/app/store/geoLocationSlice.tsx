@@ -18,8 +18,8 @@ export const geoLocaterSlice = createSlice({
     initialState,
     reducers: { 
         updateLatLong: (state, action: PayloadAction<any>) => {
-            state.lat = action.payload.lat;
-            state.long = action.payload.long;
+            state.lattitude = action.payload.lat;
+            state.longitude = action.payload.long;
             if(action.payload.timeStamp) state.currentTime = convertDateAndTime(action.payload.timeStamp);
             return state;
          },
@@ -35,8 +35,8 @@ export const geoLocaterSlice = createSlice({
             return state;
         })
         .addCase(getCoordinatesAction.fulfilled, (state, action: PayloadAction<any>) => {
-            state.lat = action.payload.lat;
-            state.long = action.payload.long;
+            state.lattitude = action.payload.lat;
+            state.longitude = action.payload.long;
             state.currentTime = convertDateAndTime(action.payload.timeStamp);
             return state;
         })

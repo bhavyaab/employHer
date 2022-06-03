@@ -1,25 +1,29 @@
 import React, {useState} from "react";
-import { geoFormFileds} from './geoFormFields';
-import  { FormInput } from '../../component/formInput';
 
-export const GeoForm = () => {
+export const GeoForm = (props:any) => {
     const [form, setForm] = useState({
-        latitude: 0,
-        longitude: 0,
+        lattitude: props.lattitude,
+        longitude: props.longitude
     });
+    const [formFields, setFormFields] = useState({...props.formFields});
     const handleFormChange = (event:any) => {
-        // Get the name of the field that caused this change event
-        // Get the new value of this field
         const { name, value } = event.target;
-    
-    // Assign new value to the appropriate form field
-    const updatedForm = {
-      ...form,
-      [name]: value
-    };
-    
-    // Update state
-    setForm(updatedForm);
+        const updatedForm = {
+        ...form,
+        [name]: value
+      };
+    var validEntry = true
+      if(formFields.fields[name]['validInput']){
+        console.log(formFields)
+        var updateFormFields = {
+          ...formFields
+        };
+        validEntry = updateFormFields.fields[name].validInput(value);
+        updateFormFields.fields[name]['errorMessage'] = validEntry? '':'Invalid ' + name + ' entry!';
+        setFormFields(updateFormFields);
+      }
+      console.log(validEntry);
+      setForm(updatedForm);
   };
 //number input type allows 'e'  as input remove by formating input
   const formatInput = (e:any) => {
@@ -39,11 +43,26 @@ export const GeoForm = () => {
       event.preventDefault();
       console.log(event)
    }
-    var inputFields = geoFormFileds.fields.map((ele:any) => <FormInput key={ele.name} {...ele} onChange={handleFormChange} onKeyDown={formatInput}></FormInput>)
+   
+    var inputFields:any[] = [];
+    for(var prop in formFields.fields){
+      var ele = formFields.fields[prop];
+        inputFields.push((<div key={ele.name} className="FormInput">
+                            <input
+                              name={ele.name}
+                              type={ele.type}
+                              placeholder={ele.placeholder}
+                              onChange={(e) => handleFormChange(e)}
+                              onKeyDown={e => formatInput(e)}
+                              />
+                            <label>{ele.errorMessage}</label>
+                        </div>))
+    }
+    
     return  (
         <form>
             {inputFields}
-            
+            <button onSubmit={(e) => handleSubmit(e)} disabled={formFields.disableSubmit}>'Get Time'</button>
         </form>
     )
 }

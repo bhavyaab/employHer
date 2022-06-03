@@ -4,7 +4,7 @@ export const initialState = {
         date: '',
         time: ''
     },
-    lat: 0,
-    long: 0,
+    lattitude: 0,
+    longitude: 0,
     message: '',
 }
