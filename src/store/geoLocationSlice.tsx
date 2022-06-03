@@ -16,22 +16,18 @@ export const geoLocaterSlice = createSlice({
     reducers: {},
     extraReducers : (builder) => {
         builder
-        .addCase(getTimeAction.pending, (state) => {
-
-        })
+        .addCase(getTimeAction.pending, (state) => {})
         .addCase(getTimeAction.fulfilled, (state, action: PayloadAction<any>) => {
             state = {...state, ...action.payload};
             state.currentTime = convertDateAndTime(action.payload.timestamp);
             return state;
         })
-        .addCase(getTimeAction.rejected, (state) => {            
+        .addCase(getTimeAction.rejected, (state) => {  
+            console.log('rejected')          
         })
     }
 });
 
 
 export const getState = (state: RootState) => state.geoLocaterState;
-
-export const {} = geoLocaterSlice.actions;
-
 export default geoLocaterSlice.reducer;

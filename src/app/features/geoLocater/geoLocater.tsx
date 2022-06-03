@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 
 import {GeoForm} from './geoForm';
 import { geoFormFileds} from './geoFormFields';
-import {getState, getTimeAction} from '../../store/geoLocationSlice';
+import {getState, getTimeAction} from '../../../store/geoLocationSlice';
 
 
 export function GeoLocater(){
@@ -25,10 +25,10 @@ export function GeoLocater(){
 const state = useAppSelector(getState);
   return (
    <div className='geoLocater'>
-    <li className='time'>{state.currentTime.time}</li>
-    <li className='date'>{state.currentTime.date}</li>
-    <li className='place'>{state.city} <li className='secondInfo'>( {state.country} )</li> </li>
-    <li className='latLong'>Lattitude: {state.lattitude} <li className='secondInfo'> Longitude: {state.longitude}</li></li>
+    <div className='time'>{state.currentTime.time}</div>
+    <div className='date'>{state.currentTime.date}</div>
+    <div className='place'>{state.city} <div className='secondInfo'>( {state.country} )</div> </div>
+    <div className='latLong'>Lattitude: {state.lattitude} <div className='secondInfo'> Longitude: {state.longitude}</div></div>
     <GeoForm lattitude={state.lattitude} longitude={state.longitude} formFields={geoFormFileds}></GeoForm>
    </div>
   )

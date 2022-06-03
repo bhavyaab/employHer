@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import { useAppDispatch } from '../../store/hooks';
-import { getTimeAction } from "../../store/geoLocationSlice";
+import { useAppDispatch } from '../../../store/hooks';
+import { getTimeAction } from "../../../store/geoLocationSlice";
 export const GeoForm = (props:any) => {
     const [form, setForm] = useState({
         lattitude: props.lattitude,
