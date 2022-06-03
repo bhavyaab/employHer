@@ -53,22 +53,30 @@ export const GeoForm = (props:any) => {
     var inputFields:any[] = [];
     for(var prop in formFields.fields){
       var ele = formFields.fields[prop];
-        inputFields.push((<div key={ele.name} className="FormInput">
-                            <input
-                              name={ele.name}
-                              type={ele.type}
-                              step={ele.step}
-                              placeholder={ele.placeholder}
-                              onChange={(e) => handleFormChange(e)}
-                              onKeyDown={e => formatInput(e)}
-                              />
-                            <div className="">{ele.errorMessage}</div>
-                        </div>))
+        inputFields.push(
+          <div key={ele.name} className="formInput">
+            <input
+              name={ele.name}
+              type={ele.type}
+              step={ele.step}
+              placeholder={ele.placeholder}
+              onChange={(e) => handleFormChange(e)}
+              onKeyDown={(e) => formatInput(e)}
+            />
+            <div
+              className={ele.errorMessage ? "errorMessage message" : "message"}
+            >
+              {ele.errorMessage ? ele.errorMessage : ele.inputProperty}
+            </div>
+          </div>
+        );
     }
     
     return  (
         <form onSubmit={(e) => handleSubmit(e)}>
+          <div>
             {inputFields}
+          </div>
             <button type="submit" disabled={form.disableSubmit}>Get Time</button>
         </form>
     )

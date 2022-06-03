@@ -24,11 +24,11 @@ export function GeoLocater(){
   },[])
 const state = useAppSelector(getState);
   return (
-   <div>
-    <li>{state.currentTime.time}</li>
-    <li>{state.currentTime.date}</li>
-    <li>{state.city} {state.country}</li>
-    <li>Lattitude: {state.lattitude}  Longitude: {state.longitude}</li>
+   <div className='geoLocater'>
+    <li className='time'>{state.currentTime.time}</li>
+    <li className='date'>{state.currentTime.date}</li>
+    <li className='place'>{state.city} <li className='secondInfo'>( {state.country} )</li> </li>
+    <li className='latLong'>Lattitude: {state.lattitude} <li className='secondInfo'> Longitude: {state.longitude}</li></li>
     <GeoForm lattitude={state.lattitude} longitude={state.longitude} formFields={geoFormFileds}></GeoForm>
    </div>
   )
