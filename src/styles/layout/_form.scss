@@ -11,3 +11,11 @@
   color: $color-tertiory;
 }
 
+@media only screen and (min-width: 650px) and (max-width: 770px) {
+    input{
+      font-size: 0.75em;
+    }
+    .message{
+      font-size: 0.5em;
+    }
+}
