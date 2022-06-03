@@ -3,26 +3,28 @@ import React, {useState} from "react";
 export const GeoForm = (props:any) => {
     const [form, setForm] = useState({
         lattitude: props.lattitude,
-        longitude: props.longitude
+        longitude: props.longitude,
+        disableSubmit : true        
     });
     const [formFields, setFormFields] = useState({...props.formFields});
     const handleFormChange = (event:any) => {
         const { name, value } = event.target;
+        var validEntry = true;
+
+        if(formFields.fields[name]['validInput']){
+          var updateFormFields = {
+            ...formFields
+          };
+          validEntry = updateFormFields.fields[name].validInput(value);
+          updateFormFields.fields[name]['errorMessage'] = validEntry? '':'Invalid ' + name + ' entry!';
+          setFormFields(updateFormFields);
+        }
+        
         const updatedForm = {
         ...form,
         [name]: value
       };
-    var validEntry = true
-      if(formFields.fields[name]['validInput']){
-        console.log(formFields)
-        var updateFormFields = {
-          ...formFields
-        };
-        validEntry = updateFormFields.fields[name].validInput(value);
-        updateFormFields.fields[name]['errorMessage'] = validEntry? '':'Invalid ' + name + ' entry!';
-        setFormFields(updateFormFields);
-      }
-      console.log(validEntry);
+      updatedForm.disableSubmit = (updatedForm.lattitude == 0 || updatedForm.longitude == 0 || !validEntry);
       setForm(updatedForm);
   };
 //number input type allows 'e'  as input remove by formating input
@@ -55,14 +57,14 @@ export const GeoForm = (props:any) => {
                               onChange={(e) => handleFormChange(e)}
                               onKeyDown={e => formatInput(e)}
                               />
-                            <label>{ele.errorMessage}</label>
+                            <div className="">{ele.errorMessage}</div>
                         </div>))
     }
     
     return  (
         <form>
             {inputFields}
-            <button onSubmit={(e) => handleSubmit(e)} disabled={formFields.disableSubmit}>'Get Time'</button>
+            <button onSubmit={(e) => handleSubmit(e)} disabled={form.disableSubmit}>'Get Time'</button>
         </form>
     )
 }
