@@ -1,7 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import geoLocaterReducer from './geoLocationSlice';
 
 export const store = configureStore({
   reducer: {
+    geoLocaterState: geoLocaterReducer
   },
 });
 

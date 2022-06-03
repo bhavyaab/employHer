@@ -1,0 +1,29 @@
+@import "@fontsource/barlow";
+@import '@fontsource/lato';
+
+@import "@fontsource/chau-philomene-one";
+
+$ff-primary: 'lato', Sans;
+$ff-secondary: 'barlow', Sans;
+$ff-tertiory: 'Chau Philomene One', Sans;
+
+
+$black: #000;
+$white: #fff;
+
+$color-primary: #9BE1E9;
+$color-secondary: #A6B0C3;
+$color-tertiory: #FE7E00;
+
+:export {
+    colorPrimary: $color-primary;
+    colorSecondary: $color-secondary;
+    colorTertiory: $color-tertiory;
+
+    black: $black;
+    white: $white;
+
+    ffPrimary: $ff-primary;
+    ffSecondary: $ff-secondary;
+    ffTertiory: $ff-tertiory;
+}

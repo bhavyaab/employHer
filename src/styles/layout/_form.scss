@@ -1,0 +1,21 @@
+.formInput{
+  margin: 0 1em;
+  display: inline-block;
+}
+.message{
+  height: 1em;
+  font-size: 0.75em;
+}
+
+.errorMessage{
+  color: $color-tertiory;
+}
+
+@media only screen and (min-width: 650px) and (max-width: 770px) {
+    input{
+      font-size: 0.75em;
+    }
+    .message{
+      font-size: 0.5em;
+    }
+}
