@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { useAppDispatch } from '../../store/hooks';
 import { getTimeAction } from "../../store/geoLocationSlice";
 export const GeoForm = (props:any) => {
     const [form, setForm] = useState({
@@ -16,7 +16,7 @@ export const GeoForm = (props:any) => {
         ...form,
         [name]: value
       };
-      updatedForm.disableSubmit = (updatedForm.lattitude == 0 || updatedForm.longitude == 0 || !validEntry);
+      updatedForm.disableSubmit = (updatedForm.lattitude === 0 || updatedForm.longitude === 0 || !validEntry);
       setForm(updatedForm);
   };
 //validate each input field if it has valid input lattitude and longitude
@@ -57,6 +57,7 @@ export const GeoForm = (props:any) => {
                             <input
                               name={ele.name}
                               type={ele.type}
+                              step={ele.step}
                               placeholder={ele.placeholder}
                               onChange={(e) => handleFormChange(e)}
                               onKeyDown={e => formatInput(e)}

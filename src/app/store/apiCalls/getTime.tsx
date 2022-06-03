@@ -1,5 +1,3 @@
-import { resolve } from "path";
-
 var key = process.env.REACT_APP_TIMEZONE_API_KEY || 'DEQFCA85DPXD';
 
 export async function getTimeZone(lattitude:number, longitude:number){
@@ -21,7 +19,7 @@ export async function getTimeZone(lattitude:number, longitude:number){
     if(!timestamp) return {date: '', time: ''};
     var time = timestamp.split(' ');
     var date = time[0].split('-');
-    var time = time[1].split(':');
+    time = time[1].split(':');
     var hours = parseInt(time[0])
     var minutes = time[1];
     var ampm = 'AM';
@@ -31,14 +29,14 @@ export async function getTimeZone(lattitude:number, longitude:number){
       hours = hours - 12;
       ampm = 'PM';
       currHours = (hours < 10? '0' : '') + hours.toString();
-      if(hours == 12) {
+      if(hours === 12) {
         currHours = '00'
         ampm = 'AM'
       }
     } else if(hours < 12){
       currHours = (hours < 10? '0' : '') + hours.toString();
       ampm = 'AM';
-      if(hours == 12) ampm = 'PM';
+      if(hours === 12) ampm = 'PM';
     }
     return {
               date: months[parseInt(date[2])] +" / "+ date[1] +" / "+date[0],

@@ -3,7 +3,7 @@ export const geoFormFileds = {
     lattitude: {
         type:"number",
         name:"lattitude",
-        value: '',
+        step: 'any',
         placeholder:"Enter lattitude",
         errorMessage: '',
         validInput: validlatitude
@@ -11,7 +11,7 @@ export const geoFormFileds = {
     longitude: {
         type:"number",
         name:"longitude",
-        value: '',
+        step: 'any',
         placeholder:"Enter Longitude",
         errorMessage:'',
         validInput: validLongitude

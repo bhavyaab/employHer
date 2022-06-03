@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks';
 
 import {GeoForm} from './geoForm';
 import { geoFormFileds} from './geoFormFields';
-import {getState, updateState, getTimeAction} from '../../store/geoLocationSlice';
+import {getState, getTimeAction} from '../../store/geoLocationSlice';
 
 
 export function GeoLocater(){
@@ -18,15 +18,15 @@ export function GeoLocater(){
     });
     return {lattitude, longitude, timestamp}
   }
-
+// eslint-disable-next-line
   useEffect(()=>{
     getCurrentLocationAndTime()
   },[])
 const state = useAppSelector(getState);
   return (
    <div>
-    <li>Time: {state.currentTime.time}</li>
-    <li>Date: {state.currentTime.date}</li>
+    <li>{state.currentTime.time}</li>
+    <li>{state.currentTime.date}</li>
     <li>{state.city} {state.country}</li>
     <li>Lattitude: {state.lattitude}  Longitude: {state.longitude}</li>
     <GeoForm lattitude={state.lattitude} longitude={state.longitude} formFields={geoFormFileds}></GeoForm>
