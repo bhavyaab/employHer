@@ -15,5 +15,5 @@ Build a simple web application that will do the following:
 - Enter into employHer application directory by running: cd emolpyHer
 - Install node modules dependency, run: npm i
 - Run application: run npm start
-- Look in the browser :<http://localhost:3000/>
-- enter valid lattitude and longitude to get time and place
+- Go to browser :<http://localhost:3000/>
+- Enter valid lattitude and longitude to get time and place
