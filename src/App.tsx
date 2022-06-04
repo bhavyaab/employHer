@@ -7,7 +7,6 @@ function App() {
       </header>
       <GeoLocater></GeoLocater>
     </div>
-  );
-}
+)}
 
 export default App;
