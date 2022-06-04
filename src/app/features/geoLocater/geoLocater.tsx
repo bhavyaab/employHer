@@ -27,8 +27,8 @@ let { currentTime, city, country, lattitude, longitude, status, message } = stat
   return (
    <div className='geoLocater'>
     <div className='time'>{currentTime.time}</div>
-    <div className={status == 'OK'? 'date': 'date errorMessage'}>{status == 'OK'? currentTime.date: message}</div>
-    <div className='place'>{city} {status == 'OK'? <div className='secondInfo'>( {country} )</div>:<></> }</div>
+    <div className={status === 'OK'? 'date': 'date errorMessage'}>{status === 'OK'? currentTime.date: message}</div>
+    <div className='place'>{city} {status === 'OK'? <div className='secondInfo'>( {country} )</div>:<></> }</div>
     <div className='latLong'>Lattitude: {lattitude} <div className='secondInfo'> Longitude: {longitude}</div></div>
     <GeoForm lattitude={lattitude} longitude={longitude} formFields={geoFormFileds}></GeoForm>
    </div>

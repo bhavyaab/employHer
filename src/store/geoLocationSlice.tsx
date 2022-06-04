@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { initialState } from './initialState';
-import {getTimeZone, convertDateAndTime} from './apiCalls/getTime';
 import { RootState } from './store';
-import { useAppDispatch } from './hooks'
+import { initialState } from './initialState';
+import {getTimeZone} from './apiCalls/getTime';
 
 export const getTimeAction = createAsyncThunk(
   "geoLocaterState/getTimeZone",
