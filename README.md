@@ -11,9 +11,9 @@ Build a simple web application that will do the following:
 
 ## Application Setting Process follow in git bash below
 
-- git clone <https://github.com/bhavyaab/employHer.git>
-- cd into employHer application by : cd emolpyHer
-- install node modules : npm i
-- run npm start
-- look in the browser :<http://localhost:3000/>
-- enter valid lattitude and longitude to get time for place
+- Clone repositery by running : git clone <https://github.com/bhavyaab/employHer.git>
+- Enter into employHer application directory by running: cd emolpyHer
+- Install node modules dependency, run: npm i
+- Run application: run npm start
+- Look in the browser :<http://localhost:3000/>
+- enter valid lattitude and longitude to get time and place
