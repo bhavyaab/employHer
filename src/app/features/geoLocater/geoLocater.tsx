@@ -20,18 +20,18 @@ export function GeoLocater(){
   }
 // eslint-disable-next-line
   useEffect(()=>{
-    getCurrentLocationAndTime()
+    getCurrentLocationAndTime();
   },[])
 const state = useAppSelector(getState);
+let { currentTime, city, country, lattitude, longitude, status, message } = state;
   return (
    <div className='geoLocater'>
-    <div className='time'>{state.currentTime.time}</div>
-    <div className='date'>{state.currentTime.date}</div>
-    <div className='place'>{state.city} <div className='secondInfo'>( {state.country} )</div> </div>
-    <div className='latLong'>Lattitude: {state.lattitude} <div className='secondInfo'> Longitude: {state.longitude}</div></div>
-    <GeoForm lattitude={state.lattitude} longitude={state.longitude} formFields={geoFormFileds}></GeoForm>
+    <div className='time'>{status == 'OK'? currentTime.time : '00:00:00'}</div>
+    <div className={status == 'OK'? 'date': 'date errorMessage'}>{status == 'OK'? currentTime.date: message}</div>
+    <div className='place'>{city} {status == 'OK'? <div className='secondInfo'>( {country} )</div>:<></> }</div>
+    <div className='latLong'>Lattitude: {lattitude} <div className='secondInfo'> Longitude: {longitude}</div></div>
+    <GeoForm lattitude={lattitude} longitude={longitude} formFields={geoFormFileds}></GeoForm>
    </div>
   )
 }
-
 

@@ -2,8 +2,10 @@ var key = process.env.REACT_APP_TIMEZONE_API_KEY;
 
 export async function getTimeZone(lattitude:number, longitude:number){
     const url = `http://api.timezonedb.com/v2.1/get-time-zone?key=${key}&format=json&by=position&lat=${lattitude}&lng=${longitude}`;
-     var response = await fetch(url).then((resp) => resp.json());
-      return {
+    
+    var response = await fetch(url).then((resp) => resp.json());
+
+    response =  {
         timestamp: response.formatted,
         city: response.cityName,
         country: response.countryName,
@@ -12,6 +14,9 @@ export async function getTimeZone(lattitude:number, longitude:number){
         message: response.message,
         status: response.status,
       };
+    return new Promise(function (resolve, reject) {
+      return (response.status === 'OK')? resolve(response) : reject(response); 
+  });
   }
 
   var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
