@@ -5,15 +5,15 @@ export async function getTimeZone(lattitude:number, longitude:number){
     
     var response = await fetch(url).then((resp) => resp.json());
 
-    response =  {
-        timestamp: response.formatted,
-        city: response.cityName,
-        country: response.countryName,
-        lattitude,
-        longitude,
-        message: response.message,
-        status: response.status,
-      };
+    response = {
+      longitude,
+      lattitude,
+      status: response.status,
+      city: response.cityName,
+      message: response.message,
+      country: response.countryName,
+      currentTime: convertDateAndTime(response.formatted),
+    };
     return new Promise(function (resolve, reject) {
       return (response.status === 'OK')? resolve(response) : reject(response); 
   });
@@ -22,7 +22,7 @@ export async function getTimeZone(lattitude:number, longitude:number){
   var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
   export function convertDateAndTime(timestamp : string){
-    if(!timestamp) return {date: '', time: ''};
+    if(!timestamp) return {date: '', time: '00:00:00'};
     var time = timestamp.split(' ');
     var date = time[0].split('-');
     time = time[1].split(':');

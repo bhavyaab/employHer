@@ -26,13 +26,10 @@ export const geoLocaterSlice = createSlice({
     extraReducers : (builder) => {
         builder.addCase(getTimeAction.pending, (state) => {});
         builder.addCase(getTimeAction.fulfilled, (state, action: PayloadAction<any>) => {
-            state = {...state, ...action.payload};
-            state.currentTime = convertDateAndTime(action.payload.timestamp);
-            return {...state};
+            return {...state, ...action.payload};
         });
         builder.addCase( getTimeAction.rejected, (state, action: PayloadAction<any>) => {
             state = { ...state, ...action.payload };
-            state.currentTime = convertDateAndTime(action.payload.timestamp);
             return state;
           });
     }

@@ -26,7 +26,7 @@ const state = useAppSelector(getState);
 let { currentTime, city, country, lattitude, longitude, status, message } = state;
   return (
    <div className='geoLocater'>
-    <div className='time'>{status == 'OK'? currentTime.time : '00:00:00'}</div>
+    <div className='time'>{currentTime.time}</div>
     <div className={status == 'OK'? 'date': 'date errorMessage'}>{status == 'OK'? currentTime.date: message}</div>
     <div className='place'>{city} {status == 'OK'? <div className='secondInfo'>( {country} )</div>:<></> }</div>
     <div className='latLong'>Lattitude: {lattitude} <div className='secondInfo'> Longitude: {longitude}</div></div>
