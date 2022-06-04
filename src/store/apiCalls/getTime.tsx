@@ -29,7 +29,7 @@ export async function getTimeZone(lattitude:number, longitude:number){
     var hours = parseInt(time[0])
     var minutes = time[1];
     var ampm = 'AM';
-    var currHours = ''
+    var currHours = hours.toString()
     if(hours > 12){
       hours = hours - 12;
       ampm = 'PM';
