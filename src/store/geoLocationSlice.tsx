@@ -23,7 +23,6 @@ export const geoLocaterSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers : (builder) => {
-        builder.addCase(getTimeAction.pending, (state) => {});
         builder.addCase(getTimeAction.fulfilled, (state, action: PayloadAction<any>) => {
             return {...state, ...action.payload};
         });

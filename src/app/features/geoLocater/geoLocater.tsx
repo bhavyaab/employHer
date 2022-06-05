@@ -19,9 +19,7 @@ export function GeoLocater(){
     return {lattitude, longitude, timestamp}
   }
 // eslint-disable-next-line
-  useEffect(()=>{
-    getCurrentLocationAndTime();
-  },[])
+  useEffect(()=>{ getCurrentLocationAndTime() },[])
 const state = useAppSelector(getState);
 let { currentTime, city, country, lattitude, longitude, status, message } = state;
   return (
